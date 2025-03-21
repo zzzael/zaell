@@ -3,61 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>journals.</title>
-    <meta itemprop="image" content="https://cdn.discordapp.com/attachments/1218728814666973194/1265742356611862578/attachment-3.gif?ex=67c9edee&is=67c89c6e&hm=56845a606d9c6affde1b03add18546e42bf5217de63e5d77e8757db521ea5358&" />
+    <title>I AM DEAN</title>
+    <meta itemprop="image" content="https://media.discordapp.net/attachments/1320063747389259817/1352705878855254109/image.png?ex=67defd05&is=67ddab85&hm=98b463d29ec54264a270b358f36c52c8c8d5cedfd658b68caeb0a55a99843c1a&=&format=webp&quality=lossless&width=1872&height=373" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="" />
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1218728814666973194/1265742356611862578/attachment-3.gif?ex=67c9edee&is=67c89c6e&hm=56845a606d9c6affde1b03add18546e42bf5217de63e5d77e8757db521ea5358&" />
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1320063747389259817/1352705878855254109/image.png?ex=67defd05&is=67ddab85&hm=98b463d29ec54264a270b358f36c52c8c8d5cedfd658b68caeb0a55a99843c1a&=&format=webp&quality=lossless&width=1872&height=373" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1218728814666973194/1265742356611862578/attachment-3.gif?ex=67c9edee&is=67c89c6e&hm=56845a606d9c6affde1b03add18546e42bf5217de63e5d77e8757db521ea5358&" />
-    <link rel="icon" href="favicon.png" type="image/png">
+    <meta name="twitter:image" content="https://media.discordapp.net/attachments/1320063747389259817/1352705878855254109/image.png?ex=67defd05&is=67ddab85&hm=98b463d29ec54264a270b358f36c52c8c8d5cedfd658b68caeb0a55a99843c1a&=&format=webp&quality=lossless&width=1872&height=373" />
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
     <style>
-        @font-face {
-            font-family: 'SFPro';
-            src: url('/assets/fonts/sfpro.ttf') format('truetype');
-        }
-
         body {
-            background-color: #E9E9EB;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: black;
             margin: 0;
-            font-family: 'SFPro', sans-serif;
         }
-
-        .journal-list {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            gap: 10px;
-        }
-
-        .journal-btn {
-            font-size: 24px;
-            color: black;
-            text-decoration: none;
+        img {
             cursor: pointer;
-        }
-
-        .journal-faded {
-            font-size: 24px;
-            color: rgba(0, 0, 0, 0.3);
-            cursor: default;
+            object-fit: contain; /* Ensures no distortion */
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="journal-list">
-        <a href="/jnl-01/" class="journal-btn">JOURNAL 001</a>
-        <a href="/jnl-02/" class="journal-btn">JOURNAL 002</a>
-        <a href="/jnl-03/" class="journal-btn">JOURNAL 003</a>
-        <a href="/jnl-04/" class="journal-btn">JOURNAL 004</a>
-        <a href="/jnl-05/" class="journal-btn">JOURNAL 005</a>
-        <a href="/jnl-06/" class="journal-btn">JOURNAL 006</a>
-        <span class="journal-faded">JOURNAL 007</span>
-    </div>
+    <img src="redirect.png" alt="Dean" onclick="playSound()">
+    <audio id="sound" src="weezy.m4a"></audio>
+    <script>
+        function playSound() {
+            document.getElementById('sound').play();
+        }
+    </script>
 </body>
 </html>
