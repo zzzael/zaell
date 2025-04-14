@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SWEET</title>
-  <meta itemprop="image" content="https://images.genius.com/01cfac5a884684dfe5ce4ac4fdc795c0.999x999x1.png" />
+  <meta itemprop="image" content="https://media.discordapp.net/attachments/1346702034052579328/1361429191274401976/image.png?ex=67feb93d&is=67fd67bd&hm=e75ff4cac8248212c149da83249d448234e0bf1a5eadc4916a80f3f08f98de88&=&format=webp&quality=lossless&width=1284&height=510" />
   <meta property="og:type" content="website" />
   <meta property="og:description" content="" />
-  <meta property="og:image" content="https://images.genius.com/01cfac5a884684dfe5ce4ac4fdc795c0.999x999x1.png" />
+  <meta property="og:image" content="https://media.discordapp.net/attachments/1346702034052579328/1361429191274401976/image.png?ex=67feb93d&is=67fd67bd&hm=e75ff4cac8248212c149da83249d448234e0bf1a5eadc4916a80f3f08f98de88&=&format=webp&quality=lossless&width=1284&height=510" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://images.genius.com/01cfac5a884684dfe5ce4ac4fdc795c0.999x999x1.png" />
+  <meta name="twitter:image" content="https://media.discordapp.net/attachments/1346702034052579328/1361429191274401976/image.png?ex=67feb93d&is=67fd67bd&hm=e75ff4cac8248212c149da83249d448234e0bf1a5eadc4916a80f3f08f98de88&=&format=webp&quality=lossless&width=1284&height=510" />
   <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
   <style>
     @font-face {
@@ -30,6 +30,7 @@
       margin: 0;
       padding-left: 2vw;
       position: relative;
+      overflow: hidden;
     }
 
     .corner-text {
@@ -103,7 +104,7 @@
       font-size: 1.5rem;
       color: #ffffff;
       display: flex;
-      flex-direction: column; /* Stack main and subtext */
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 100%;
@@ -113,6 +114,7 @@
       left: 0;
       white-space: pre;
       letter-spacing: 0.1em;
+      z-index: 1;
     }
 
     .blurred {
@@ -120,8 +122,19 @@
     }
 
     .subtext {
-      font-size: 0.8rem; /* Smaller text for THIS WEEK */
-      margin-top: 0.5rem; /* Space below main text */
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    #background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      opacity: 0.8;
+      z-index: -1;
     }
   </style>
 </head>
@@ -133,13 +146,13 @@
   </div>
 
   <script>
-    const fullText = "WHAT MAKES YOU THINK\n\nI'M NOT IN LOVE?";
+    const fullText = "WHERE THE FUCK DA\n\nWHERE THE FUCK DA FUNCTION?";
     const el = document.getElementById("text");
     const cursor = document.getElementById("cursor");
     const terminalInput = document.getElementById("terminalInput");
     const input = terminalInput.querySelector("input");
     let i = 0;
-    const speed = 80;
+    const speed = 90;
 
     function type() {
       if (i < fullText.length) {
@@ -167,6 +180,15 @@
           document.body.innerHTML = '<div id="scrambler"></div>';
           const scramblerEl = document.getElementById("scrambler");
 
+          // Add background video
+          const video = document.createElement("video");
+          video.id = "background-video";
+          video.src = "func.webm";
+          video.autoplay = true;
+          video.loop = false;
+          video.muted = false;
+          document.body.appendChild(video);
+
           const finalText = "THE FENT FILES";
           let currentText = Array(finalText.length).fill(null);
           const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
@@ -193,13 +215,18 @@
             }
             scramblerEl.appendChild(mainTextSpan);
 
-            // Add subtext when scrambling is done
+            // Add subtext and clear text after 10s
             if (allRevealed) {
               const subTextSpan = document.createElement("span");
               subTextSpan.classList.add("subtext");
               subTextSpan.textContent = "THIS WEEK";
               scramblerEl.appendChild(subTextSpan);
               scramblerEl.classList.add("fade-sync");
+
+              // Clear text after 10s
+              setTimeout(() => {
+                scramblerEl.innerHTML = "";
+              }, 10000);
             }
 
             if (!allRevealed) {
