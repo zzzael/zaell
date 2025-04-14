@@ -67,15 +67,13 @@
       50%, 100% { visibility: hidden; }
     }
 
-    /* New class for fading text */
     .fade-sync {
       animation: fadeSync 1.2s ease-in-out infinite;
     }
 
-    /* New keyframes for smooth fading in sync with blinkSlow */
     @keyframes fadeSync {
       0% { opacity: 1; }
-      50% { opacity: 0.3; } /* Fades to low opacity instead of fully invisible */
+      50% { opacity: 0.3; }
       100% { opacity: 1; }
     }
 
@@ -99,6 +97,32 @@
     .terminal-input input::placeholder {
       color: #888;
     }
+
+    #scrambler {
+      font-family: 'CodeFont', monospace;
+      font-size: 1.5rem;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column; /* Stack main and subtext */
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: pre;
+      letter-spacing: 0.1em;
+    }
+
+    .blurred {
+      filter: blur(2px);
+    }
+
+    .subtext {
+      font-size: 0.8rem; /* Smaller text for THIS WEEK */
+      margin-top: 0.5rem; /* Space below main text */
+    }
   </style>
 </head>
 <body>
@@ -113,6 +137,7 @@
     const el = document.getElementById("text");
     const cursor = document.getElementById("cursor");
     const terminalInput = document.getElementById("terminalInput");
+    const input = terminalInput.querySelector("input");
     let i = 0;
     const speed = 80;
 
@@ -128,13 +153,75 @@
       } else {
         cursor.classList.remove("cursor");
         cursor.classList.add("blink-slow");
-        cursor.textContent = ""; // Turn cursor into blinking question mark
-        el.classList.add("fade-sync"); // Apply fading animation to text
+        cursor.textContent = "";
+        el.classList.add("fade-sync");
         setTimeout(() => {
           terminalInput.style.display = 'block';
         }, 1000);
       }
     }
+
+    input.addEventListener("keyup", function (event) {
+      if (event.key === "Enter" && input.value === "SWEET") {
+        setTimeout(() => {
+          document.body.innerHTML = '<div id="scrambler"></div>';
+          const scramblerEl = document.getElementById("scrambler");
+
+          const finalText = "THE FENT FILES";
+          let currentText = Array(finalText.length).fill(null);
+          const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+          let revealIndex = 0;
+
+          function updateDisplay() {
+            scramblerEl.innerHTML = "";
+            let allRevealed = revealIndex >= finalText.length;
+
+            // Main text container
+            const mainTextSpan = document.createElement("span");
+            for (let j = 0; j < finalText.length; j++) {
+              const span = document.createElement("span");
+              if (finalText[j] === " ") {
+                span.innerHTML = " ";
+              } else if (currentText[j] === finalText[j]) {
+                span.textContent = finalText[j];
+              } else {
+                const randomChar = chars[Math.floor(Math.random() * chars.length)];
+                span.textContent = randomChar;
+                span.classList.add("blurred");
+              }
+              mainTextSpan.appendChild(span);
+            }
+            scramblerEl.appendChild(mainTextSpan);
+
+            // Add subtext when scrambling is done
+            if (allRevealed) {
+              const subTextSpan = document.createElement("span");
+              subTextSpan.classList.add("subtext");
+              subTextSpan.textContent = "THIS WEEK";
+              scramblerEl.appendChild(subTextSpan);
+              scramblerEl.classList.add("fade-sync");
+            }
+
+            if (!allRevealed) {
+              setTimeout(updateDisplay, 50); // Fast scramble
+            }
+          }
+
+          function revealNext() {
+            if (revealIndex < finalText.length) {
+              if (finalText[revealIndex] !== " ") {
+                currentText[revealIndex] = finalText[revealIndex];
+              }
+              revealIndex++;
+              setTimeout(revealNext, 400); // Slow reveal
+            }
+          }
+
+          updateDisplay();
+          revealNext();
+        }, 1500);
+      }
+    });
 
     type();
   </script>
