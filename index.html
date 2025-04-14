@@ -183,9 +183,9 @@
           // Add background video
           const video = document.createElement("video");
           video.id = "background-video";
-          video.src = "func.webm";
+          video.src = "upd.webm";
           video.autoplay = true;
-          video.loop = false;
+          video.loop = true;
           video.muted = false;
           document.body.appendChild(video);
 
@@ -215,7 +215,7 @@
             }
             scramblerEl.appendChild(mainTextSpan);
 
-            // Add subtext and clear text after 10s
+            // clear text container
             if (allRevealed) {
               const subTextSpan = document.createElement("span");
               subTextSpan.classList.add("subtext");
@@ -223,14 +223,14 @@
               scramblerEl.appendChild(subTextSpan);
               scramblerEl.classList.add("fade-sync");
 
-              // Clear text after 10s
+              // navigate to the next page after 10 seconds
               setTimeout(() => {
                 scramblerEl.innerHTML = "";
               }, 10000);
             }
 
             if (!allRevealed) {
-              setTimeout(updateDisplay, 50); // Fast scramble
+              setTimeout(updateDisplay, 50);
             }
           }
 
@@ -240,7 +240,7 @@
                 currentText[revealIndex] = finalText[revealIndex];
               }
               revealIndex++;
-              setTimeout(revealNext, 400); // Slow reveal
+              setTimeout(revealNext, 400); // fuckass faggot shit
             }
           }
 
