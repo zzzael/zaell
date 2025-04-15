@@ -14,11 +14,11 @@
   <style>
     @font-face {
       font-family: 'CodeFont';
-      src: url('nok.ttf') format('truetype');
+      src: url('code.ttf') format('truetype');
     }
 
     body {
-      background-color: #9AC073;
+      background-color: #EFAEC2;
       color: #000000;
       font-family: 'CodeFont', monospace;
       font-size: 1rem;
@@ -37,7 +37,7 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: #333333;
       font-family: 'CodeFont', monospace;
     }
@@ -49,7 +49,7 @@
     .cursor {
       display: inline-block;
       width: 0.15em;
-      background-color: #000000;
+      background-color: #ffffff;
       animation: blinkCursor 0.8s steps(1) infinite;
       vertical-align: bottom;
     }
@@ -102,7 +102,7 @@
     #scrambler {
       font-family: 'CodeFont', monospace;
       font-size: 1.5rem;
-      color: #ffffff;
+      color: #000000;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -133,7 +133,7 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
-      opacity: 1;
+      opacity: 0.7;
       z-index: -1;
     }
   </style>
@@ -146,13 +146,14 @@
   </div>
 
   <script>
-    const fullText = "WHERE THE FUCK DA\n\nWHERE THE FUCK DA FUNCTION?";
+    // I just need some confirmation on how you feel, for rea
+    const fullText = "I JUST NEED SOME CONFIRMATION\nON HOW YOU FEEL\nFOR REAL\n";
     const el = document.getElementById("text");
     const cursor = document.getElementById("cursor");
     const terminalInput = document.getElementById("terminalInput");
     const input = terminalInput.querySelector("input");
     let i = 0;
-    const speed = 90;
+    const speed = 80;
 
     function type() {
       if (i < fullText.length) {
@@ -175,7 +176,7 @@
     }
 
     input.addEventListener("keyup", function (event) {
-      if (event.key === "Enter" && input.value === "SWEET") {
+      if (event.key === "Enter" && input.value === "EARFQUAKE") {
         setTimeout(() => {
           document.body.innerHTML = '<div id="scrambler"></div>';
           const scramblerEl = document.getElementById("scrambler");
@@ -183,13 +184,13 @@
           // Add background video
           const video = document.createElement("video");
           video.id = "background-video";
-          video.src = "wow.webm";
+          video.src = "earf.webm";
           video.autoplay = true;
           video.loop = true;
           video.muted = false;
           document.body.appendChild(video);
 
-          const finalText = "THE FAGGOT FILES";
+          const finalText = "JOURNAL ONE";
           let currentText = Array(finalText.length).fill(null);
           const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
           let revealIndex = 0;
@@ -219,7 +220,7 @@
             if (allRevealed) {
               const subTextSpan = document.createElement("span");
               subTextSpan.classList.add("subtext");
-              subTextSpan.textContent = "NO MORE GROOMING - 18TH APRIL";
+              subTextSpan.textContent = "TONIGHT";
               scramblerEl.appendChild(subTextSpan);
               scramblerEl.classList.add("fade-sync");
 
