@@ -1,257 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SWEET</title>
-  <meta itemprop="image" content="https://i.redd.it/b5a5ebg4s0g51.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="" />
-  <meta property="og:image" content="https://i.redd.it/b5a5ebg4s0g51.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://i.redd.it/b5a5ebg4s0g51.jpg" />
-  <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
-  <style>
-    @font-face {
-      font-family: 'CodeFont';
-      src: url('code.ttf') format('truetype');
-    }
-
-    body {
-      background-color: #EFAEC2;
-      color: #000000;
-      font-family: 'CodeFont', monospace;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      height: 100vh;
-      margin: 0;
-      padding-left: 2vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .corner-text {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 0.9rem;
-      color: #333333;
-      font-family: 'CodeFont', monospace;
-    }
-
-    #text {
-      white-space: pre;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 0.15em;
-      background-color: #ffffff;
-      animation: blinkCursor 0.8s steps(1) infinite;
-      vertical-align: bottom;
-    }
-
-    @keyframes blinkCursor {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
-    .blink-slow {
-      animation: blinkSlow 1.2s steps(1) infinite;
-    }
-
-    @keyframes blinkSlow {
-      0%, 49% { visibility: visible; }
-      50%, 100% { visibility: hidden; }
-    }
-
-    .fade-sync {
-      animation: fadeSync 1.2s ease-in-out infinite;
-    }
-
-    @keyframes fadeSync {
-      0% { opacity: 1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 1; }
-    }
-
-    .terminal-input {
-      margin-top: 1.5rem;
-      color: #888;
-      font-size: 1rem;
-      display: none;
-    }
-
-    .terminal-input input {
-      background: transparent;
-      border: none;
-      color: rgb(49, 49, 49);
-      font-family: 'CodeFont', monospace;
-      font-size: 1rem;
-      outline: none;
-      width: 200px;
-    }
-
-    .terminal-input input::placeholder {
-      color: #888;
-    }
-
-    #scrambler {
-      font-family: 'CodeFont', monospace;
-      font-size: 1.5rem;
-      color: #000000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      white-space: pre;
-      letter-spacing: 0.1em;
-      z-index: 1;
-    }
-
-    .blurred {
-      filter: blur(2px);
-    }
-
-    .subtext {
-      font-size: 0.8rem;
-      margin-top: 0.5rem;
-    }
-
-    #background-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      opacity: 0.7;
-      z-index: -1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONCEPT HALL 2025</title>
+    <meta property="og:image" content="https://media.discordapp.net/attachments/939946587013132349/1372307235199520811/IlIiv7a.png?ex=68264c35&is=6824fab5&hm=3a3547325c612f0825b40969bb758811ddb40681f95edf6d409289b0a26a323c&=&format=webp&quality=lossless&width=792&height=709">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* White background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #countdown {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        img {
+            width: 500px;
+            height: 500px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="corner-text">zael's journal 2.0 on the way</div>
-  <div><span id="text"></span><span class="cursor" id="cursor"></span></div>
-  <div class="terminal-input" id="terminalInput">
-    > <input type="password" placeholder="ENTER PASSWORD">
-  </div>
+    <div id="countdown">00:00:00</div>
+    <img src="TYLER.png" alt="Clickable Image" onclick="playAudio()">
+    <audio id="audio" src="darling.m4a"></audio>
 
-  <script>
-    // I just need some confirmation on how you feel, for rea
-    const fullText = "I JUST NEED SOME CONFIRMATION\nON HOW YOU FEEL\nFOR REAL\n";
-    const el = document.getElementById("text");
-    const cursor = document.getElementById("cursor");
-    const terminalInput = document.getElementById("terminalInput");
-    const input = terminalInput.querySelector("input");
-    let i = 0;
-    const speed = 80;
+    <script>
+        // Target date: Friday, May 16, 2025, 6:00 PM BST
+        const targetDate = new Date("2025-05-16T18:00:00+01:00").getTime();
 
-    function type() {
-      if (i < fullText.length) {
-        el.textContent += fullText.charAt(i);
-        i++;
-        if (fullText.charAt(i - 1) === '\n') {
-          setTimeout(type, 1000);
-        } else {
-          setTimeout(type, speed);
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("countdown").innerText = "00:00:00";
+                return;
+            }
+
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerText = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         }
-      } else {
-        cursor.classList.remove("cursor");
-        cursor.classList.add("blink-slow");
-        cursor.textContent = "";
-        el.classList.add("fade-sync");
-        setTimeout(() => {
-          terminalInput.style.display = 'block';
-        }, 1000);
-      }
-    }
 
-    input.addEventListener("keyup", function (event) {
-      if (event.key === "Enter" && input.value === "EARFQUAKE") {
-        setTimeout(() => {
-          document.body.innerHTML = '<div id="scrambler"></div>';
-          const scramblerEl = document.getElementById("scrambler");
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-          // Add background video
-          const video = document.createElement("video");
-          video.id = "background-video";
-          video.src = "earf.webm";
-          video.autoplay = true;
-          video.loop = true;
-          video.muted = false;
-          document.body.appendChild(video);
-
-          const finalText = "JOURNAL ONE";
-          let currentText = Array(finalText.length).fill(null);
-          const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
-          let revealIndex = 0;
-
-          function updateDisplay() {
-            scramblerEl.innerHTML = "";
-            let allRevealed = revealIndex >= finalText.length;
-
-            // Main text container
-            const mainTextSpan = document.createElement("span");
-            for (let j = 0; j < finalText.length; j++) {
-              const span = document.createElement("span");
-              if (finalText[j] === " ") {
-                span.innerHTML = " ";
-              } else if (currentText[j] === finalText[j]) {
-                span.textContent = finalText[j];
-              } else {
-                const randomChar = chars[Math.floor(Math.random() * chars.length)];
-                span.textContent = randomChar;
-                span.classList.add("blurred");
-              }
-              mainTextSpan.appendChild(span);
-            }
-            scramblerEl.appendChild(mainTextSpan);
-
-            // clear text container
-            if (allRevealed) {
-              const subTextSpan = document.createElement("span");
-              subTextSpan.classList.add("subtext");
-              subTextSpan.textContent = "TONIGHT";
-              scramblerEl.appendChild(subTextSpan);
-              scramblerEl.classList.add("fade-sync");
-
-              // navigate to the next page after 10 seconds
-              setTimeout(() => {
-                scramblerEl.innerHTML = "";
-              }, 10000);
-            }
-
-            if (!allRevealed) {
-              setTimeout(updateDisplay, 50);
-            }
-          }
-
-          function revealNext() {
-            if (revealIndex < finalText.length) {
-              if (finalText[revealIndex] !== " ") {
-                currentText[revealIndex] = finalText[revealIndex];
-              }
-              revealIndex++;
-              setTimeout(revealNext, 400); // fuckass faggot shit
-            }
-          }
-
-          updateDisplay();
-          revealNext();
-        }, 1500);
-      }
-    });
-
-    type();
-  </script>
+        function playAudio() {
+            const audio = document.getElementById("audio");
+            audio.play();
+        }
+    </script>
 </body>
 </html>
