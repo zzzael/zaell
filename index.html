@@ -29,13 +29,19 @@
             height: 500px;
             object-fit: cover;
             cursor: pointer;
+            opacity: 1;
+            transition: opacity 1s ease-in-out; /* Fade transition */
+        }
+        .fade-out {
+            opacity: 0;
         }
     </style>
 </head>
 <body>
     <div id="countdown">00:00:00</div>
-    <img src="TYLER.png" alt="Clickable Image" onclick="playAudio()">
-    <audio id="audio" src="darling.m4a"></audio>
+    <img id="galleryImage" src="TYLER.png" alt="Gallery Image" onclick="playAudio()">
+    <audio id="audioTyler" src="darling.m4a"></audio>
+    <audio id="audioGolf" src="wusyaname.mp3"></audio>
 
     <script>
         // Target date: Friday, May 16, 2025, 6:00 PM BST
@@ -61,9 +67,37 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        const images = ["TYLER.png", "golf.png"];
+        let currentImageIndex = 0;
+        const galleryImage = document.getElementById("galleryImage");
+
+        function rotateImage() {
+            galleryImage.classList.add("fade-out");
+            setTimeout(() => {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                galleryImage.src = images[currentImageIndex];
+                galleryImage.classList.remove("fade-out");
+            }, 1000); // Matches the transition duration
+        }
+
+        setInterval(rotateImage, 5000); // Rotate every 10 seconds
+
         function playAudio() {
-            const audio = document.getElementById("audio");
-            audio.play();
+            const audioTyler = document.getElementById("audioTyler");
+            const audioGolf = document.getElementById("audioGolf");
+
+            // Stop both audios before playing the new one
+            audioTyler.pause();
+            audioTyler.currentTime = 0;
+            audioGolf.pause();
+            audioGolf.currentTime = 0;
+
+            // Play the appropriate audio based on the current image
+            if (galleryImage.src.includes("TYLER.png")) {
+                audioTyler.play();
+            } else if (galleryImage.src.includes("golf.png")) {
+                audioGolf.play();
+            }
         }
     </script>
 </body>
