@@ -3,102 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GALLERY</title>
-    <link rel="icon" href="FAV.png" type="image/png" sizes="64x64">
-    <meta itemprop="image" content="https://media.discordapp.net/attachments/939946587013132349/1372307235199520811/IlIiv7a.png?ex=68264c35&is=6824fab5&hm=3a3547325c612f0825b40969bb758811ddb40681f95edf6d409289b0a26a323c&=&format=webp&quality=lossless&width=792&height=709" />
+    <title>SWEET</title>
+    <meta itemprop="image" content="https://media.discordapp.net/attachments/1286083085053464650/1372977408566890506/V2j8LFC.png?ex=6828bc5a&is=68276ada&hm=487644095122b4361a2459c8ac2bce0496ef24405fd72a4fab75c811624e9b19&=&format=webp&quality=lossless" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1286083085053464650/1372977408566890506/V2j8LFC.png?ex=6828bc5a&is=68276ada&hm=487644095122b4361a2459c8ac2bce0496ef24405fd72a4fab75c811624e9b19&=&format=webp&quality=lossless" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://media.discordapp.net/attachments/1286083085053464650/1372977408566890506/V2j8LFC.png?ex=6828bc5a&is=68276ada&hm=487644095122b4361a2459c8ac2bce0496ef24405fd72a4fab75c811624e9b19&=&format=webp&quality=lossless" />
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
     <style>
+        @font-face {
+            font-family: 'CodeFont';
+            src: url('code.ttf') format('truetype');
+        }
+
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff; /* White background */
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'CodeFont', monospace;
+            font-size: 1rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding-left: 2vw;
+            position: relative;
+            transition: background-color 1s ease;
         }
-        #countdown {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 20px;
+
+        .corner-text {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: #888;
+            font-family: 'CodeFont', monospace;
         }
-        img {
-            width: 500px;
-            height: 500px;
-            object-fit: cover;
-            cursor: pointer;
-            opacity: 1;
-            transition: opacity 1s ease-in-out; /* Fade transition */
+
+        #text {
+            white-space: pre;
         }
-        .fade-out {
-            opacity: 0;
+
+        .cursor {
+            display: inline-block;
+            width: 0.15em;
+            background-color: #ffffff;
+            animation: blinkCursor 0.8s steps(1) infinite;
+            vertical-align: bottom;
+        }
+
+        @keyframes blinkCursor {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .blink-slow {
+            animation: blinkSlow 1.2s steps(1) infinite;
+        }
+
+        @keyframes blinkSlow {
+            0%, 49% { visibility: visible; }
+            50%, 100% { visibility: hidden; }
+        }
+
+        .fade-sync {
+            animation: fadeSync 1.2s ease-in-out infinite;
+        }
+
+        @keyframes fadeSync {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .terminal-input {
+            margin-top: 1.5rem;
+            color: #888;
+            font-size: 1rem;
+            display: none;
+        }
+
+        .terminal-input input {
+            background: transparent;
+            border: none;
+            color: rgb(171, 171, 182);
+            font-family: 'CodeFont', monospace;
+            font-size: 1rem;
+            outline: none;
+            width: 200px;
+        }
+
+        .terminal-input input::placeholder {
+            color: #888;
+        }
+
+        #scrambler {
+            font-family: 'CodeFont', monospace;
+            font-size: 1.5rem;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: pre;
+            letter-spacing: 0.1em;
+        }
+
+        .blurred {
+            filter: blur(2px);
+        }
+
+        .subtext {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .video-container iframe {
+            width: 560px;
+            height: 315px;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <div id="countdown">00:00:00</div>
-    <img id="galleryImage" src="TYLER.png" alt="Gallery Image" onclick="playAudio()">
-    <audio id="audioTyler" src="darling.m4a"></audio>
-    <audio id="audioGolf" src="wusyaname.mp3"></audio>
+    <div class="corner-text">zael's journal 2.0 on the way</div>
+    <div><span id="text"></span><span class="cursor" id="cursor"></span></div>
+    <div class="terminal-input" id="terminalInput">
+        > <input type="password" placeholder="ENTER PASSWORD">
+    </div>
 
     <script>
-        // Target date: Friday, May 16, 2025, 6:00 PM BST
-        const targetDate = new Date("2025-05-16T18:00:00+01:00").getTime();
+        const fullText = "WHAT MAKES YOU THINK\n\nI'M NOT IN LOVE?";
+        const el = document.getElementById("text");
+        const cursor = document.getElementById("cursor");
+        const terminalInput = document.getElementById("terminalInput");
+        const input = terminalInput.querySelector("input");
+        let i = 0;
+        const speed = 80;
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const timeLeft = targetDate - now;
-
-            if (timeLeft <= 0) {
-                document.getElementById("countdown").innerText = "00:00:00";
-                return;
-            }
-
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerText = 
-                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        const images = ["TYLER.png", "golf.png"];
-        let currentImageIndex = 0;
-        const galleryImage = document.getElementById("galleryImage");
-
-        function rotateImage() {
-            galleryImage.classList.add("fade-out");
-            setTimeout(() => {
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-                galleryImage.src = images[currentImageIndex];
-                galleryImage.classList.remove("fade-out");
-            }, 1000); // Matches the transition duration
-        }
-
-        setInterval(rotateImage, 5000); // Rotate every 10 seconds
-
-        function playAudio() {
-            const audioTyler = document.getElementById("audioTyler");
-            const audioGolf = document.getElementById("audioGolf");
-
-            // Stop both audios before playing the new one
-            audioTyler.pause();
-            audioTyler.currentTime = 0;
-            audioGolf.pause();
-            audioGolf.currentTime = 0;
-
-            // Play the appropriate audio based on the current image
-            if (galleryImage.src.includes("TYLER.png")) {
-                audioTyler.play();
-            } else if (galleryImage.src.includes("golf.png")) {
-                audioGolf.play();
+        function type() {
+            if (i < fullText.length) {
+                el.textContent += fullText.charAt(i);
+                i++;
+                if (fullText.charAt(i - 1) === '\n') {
+                    setTimeout(type, 1000);
+                } else {
+                    setTimeout(type, speed);
+                }
+            } else {
+                cursor.classList.remove("cursor");
+                cursor.classList.add("blink-slow");
+                cursor.textContent = "";
+                el.classList.add("fade-sync");
+                setTimeout(() => {
+                    terminalInput.style.display = 'block';
+                }, 1000);
             }
         }
+
+        input.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                if (input.value === "SWEET") {
+                    setTimeout(() => {
+                        document.body.innerHTML = '<div id="scrambler"></div>';
+                        const scramblerEl = document.getElementById("scrambler");
+
+                        const finalText = "THE FENT FILES";
+                        let currentText = Array(finalText.length).fill(null);
+                        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+                        let revealIndex = 0;
+
+                        function updateDisplay() {
+                            scramblerEl.innerHTML = "";
+                            let allRevealed = revealIndex >= finalText.length;
+
+                            const mainTextSpan = document.createElement("span");
+                            for (let j = 0; j < finalText.length; j++) {
+                                const span = document.createElement("span");
+                                if (finalText[j] === " ") {
+                                    span.innerHTML = " ";
+                                } else if (currentText[j] === finalText[j]) {
+                                    span.textContent = finalText[j];
+                                } else {
+                                    const randomChar = chars[Math.floor(Math.random() * chars.length)];
+                                    span.textContent = randomChar;
+                                    span.classList.add("blurred");
+                                }
+                                mainTextSpan.appendChild(span);
+                            }
+                            scramblerEl.appendChild(mainTextSpan);
+
+                            if (allRevealed) {
+                                const subTextSpan = document.createElement("span");
+                                subTextSpan.classList.add("subtext");
+                                subTextSpan.textContent = "THIS WEEK";
+                                scramblerEl.appendChild(subTextSpan);
+                                scramblerEl.classList.add("fade-sync");
+                            }
+
+                            if (!allRevealed) {
+                                setTimeout(updateDisplay, 50);
+                            }
+                        }
+
+                        function revealNext() {
+                            if (revealIndex < finalText.length) {
+                                if (finalText[revealIndex] !== " ") {
+                                    currentText[revealIndex] = finalText[revealIndex];
+                                }
+                                revealIndex++;
+                                setTimeout(revealNext, 400);
+                            }
+                        }
+
+                        updateDisplay();
+                        revealNext();
+                    }, 1500);
+                } else if (input.value === "HEY JANE") {
+                    setTimeout(() => {
+                        document.body.style.backgroundColor = '#007F39';
+                        document.body.innerHTML = `
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/qFfjnPOXmUM?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        `;
+                    }, 500);
+                }
+            }
+        });
+
+        type();
     </script>
 </body>
 </html>
