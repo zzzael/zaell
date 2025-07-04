@@ -3,51 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hostr</title>
-    <link rel="icon" href="favico.png" type="image/png" sizes="64x64">
-    <meta name="description" content="" />
-
-    <!-- Google / Search Engine Tags -->
-    <meta itemprop="name" content="hostr" />
-    <meta itemprop="description" content="" />
-    <meta itemprop="image" content="https://media.discordapp.net/attachments/1376628092218507347/1387043963147653160/image.png?ex=685be8da&amp;is=685a975a&amp;hm=70d4574c59074bb3269a55daaa03d1e9509f35a14660224431574e5563a4a11c&amp;=&amp..." />
-
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://zael.uk/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://media.discordapp.net/attachments/1376628092218507347/1387043963147653160/image.png?ex=685be8da&amp;is=685a975a&amp;hm=70d4574c59074bb3269a55daaa03d1e9509f35a14660224431574e5563a4a11c&amp;=&amp..." />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="hostr" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="https://media.discordapp.net/attachments/1376628092218507347/1387043963147653160/image.png?ex=685be8da&amp;is=685a975a&amp;hm=70d4574c59074bb3269a55daaa03d1e9509f35a14660224431574e5563a4a11c&amp;=&amp..." />
-
-    <!-- Meta Tags Generated via https://heymeta.com -->
+    <title>MINEKOPIA</title>
+    <meta property="og:image" content="minekopiaa.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFElEQVR42mP8/5+hYAQAQEkQARoABAFh/AAARQABeQAAAwAAAAEAABQAAX4EAAAA=');
-            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            margin: 0;
+            background: #00612C;
         }
-        .content {
-            width: 683px;
-            height: 243px;
-            background-image: url('image.png');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
+        .center-image {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            background: white;
+            padding: 10px;
+        }
+        .center-image img {
+            display: block;
+            max-width: 76vw; /* 120% of 63vw */
+            max-height: 67vh; /* 120% of 56vh */
+            height: auto;
+            width: auto;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
         }
     </style>
 </head>
 <body>
-    <div class="content"></div>
+    <div class="center-image">
+        <img src="post.png" alt="Postcard" id="post-img">
+        <audio id="postcard-audio" src="snippet.mp3"></audio>
+    </div>
+    <script>
+        const img = document.getElementById('postcard-img');
+        const audio = document.getElementById('postcard-audio');
+        img.addEventListener('click', () => {
+            audio.currentTime = 0;
+            audio.play();
+        });
+    </script>
 </body>
 </html>
