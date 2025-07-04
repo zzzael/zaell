@@ -34,16 +34,18 @@
 </head>
 <body>
     <div class="center-image">
-        <img src="post.png" alt="Postcard" id="post-img">
+        <img src="post.png" alt="Postcard" id="postcard-img">
         <audio id="postcard-audio" src="snippet.mp3"></audio>
     </div>
     <script>
         const img = document.getElementById('postcard-img');
         const audio = document.getElementById('postcard-audio');
-        img.addEventListener('click', () => {
-            audio.currentTime = 0;
-            audio.play();
-        });
+        if (img && audio) {
+            img.addEventListener('click', () => {
+                audio.currentTime = 0;
+                audio.play();
+            });
+        }
     </script>
 </body>
 </html>
