@@ -37,7 +37,7 @@
 </head>
 <body>
     <div class="center-image">
-        <img src="inside.png" alt="Postcard" id="postcard-img">
+        <img src="SCARED.png" alt="Postcard" id="postcard-img">
         <audio id="postcard-audio" src="snippet.mp3"></audio>
     </div>
     <script>
@@ -45,8 +45,14 @@
         const audio = document.getElementById('postcard-audio');
         if (img && audio) {
             img.addEventListener('click', () => {
-                audio.currentTime = 0;
-                audio.play();
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            });
+            audio.addEventListener('ended', () => {
+                window.location.href = 'https://yzycraft.co.uk';
             });
         }
     </script>
